@@ -131,7 +131,14 @@ io.on('connection', (socket) => {
 // http.listen(PORT, () => {
 //   console.log('Connected : 3001');
 // });
-const PORT = config.get('serverPort')
+const PORT = config.get('serverPort');
+
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 const start = async () => {
   try {
 

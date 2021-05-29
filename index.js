@@ -133,21 +133,12 @@ io.on('connection', (socket) => {
 // });
 const PORT = config.get('serverPort');
 
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 const start = async () => {
   try {
 
     await mongoose.connect(config.get('dbUrl'))
 
-    // app.listen(PORT, () => {
-    //   console.log('Connected on PORT: ', PORT)
-    // })
-    / http.listen(PORT, () => {
+      http.listen(PORT, () => {
         console.log('Connected : 3001');
       });
 
